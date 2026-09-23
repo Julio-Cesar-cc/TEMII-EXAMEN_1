@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session,make_response
+from flask import Flask, render_template, request, redirect, url_for, session,make_response,flash
 
 app = Flask(__name__)
 
@@ -61,8 +61,11 @@ def perfil():
 
 @app.route('/logout')
 def logout():
-    session.pop('usuario', None)
+    session.clear()
+    flash("La sesión fue cerrada correctamente")
     return redirect(url_for('login'))
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
