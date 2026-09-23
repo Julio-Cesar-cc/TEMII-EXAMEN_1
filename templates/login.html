@@ -9,7 +9,6 @@
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
 
-        <!-- Mensaje de confirmacion al cerrar sesion -->
         {% with mensajes = get_flashed_messages() %}
             {% if mensajes %}
                 {% for msg in mensajes %}
@@ -18,7 +17,6 @@
             {% endif %}
         {% endwith %}
 
-        <!-- Mensaje de error de credenciales -->
         {% if mensaje %}
             <p class="error-message">{{ mensaje }}</p>
         {% endif %}
