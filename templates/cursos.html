@@ -1,16 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Cursos</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <div class="login-container">
-        <h2>Bienvenido a cursos</h2>
-        <p>Has ingresado correctamente a la aplicación.</p>
+{% extends "base.html" %}
+
+{% block contenido %}
+    <h2>Lista de Cursos</h2>
+
+    <ul>
+    {% for curso in cursos %}
+        <li>
+            <strong>Nombre:</strong> {{ curso.nombre }} <br>
+            <strong>Docente:</strong> {{ curso.docente }} <br>
+            <strong>Cupos:</strong> {{ curso.cupos }} <br>
+            <strong>Estado:</strong> 
+            {% if curso.cupos > 0 %}
+                <span>Curso disponible</span>
+            {% else %}
+                <span>Curso lleno</span>
+            {% endif %}
+        </li>
         <br>
-        <a href="/logout">Cerrar Sesión</a>
-    </div>
-</body>
-</html>
+    {% endfor %}
+    </ul>
+{% endblock %}

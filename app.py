@@ -10,13 +10,14 @@ usuarios = {
     "pedro": "2026"
 }
 
+
 @app.route('/', methods=['GET', 'POST'])
 def login():
     mensaje = None
     if request.method == 'POST':
         usuario = request.form.get('username')
         password = request.form.get('password')
-        
+
         if usuario in usuarios and usuarios[usuario] == password:
             session['usuario'] = usuario
             return redirect(url_for('cursos'))
@@ -28,8 +29,11 @@ def login():
 @app.route('/cursos')
 def cursos():
     if 'usuario' in session:
-        nombre = session['usuario']
-        return render_template('cursos.html', nombre=nombre)
+        cursos = [
+        {"nombre": "Programación Web", "docente": "Luis Pérez", "cupos": 15},
+        {"nombre": "Bases de Datos", "docente": "Ana López", "cupos": 8},
+        {"nombre": "Inteligencia Artificial", "docente": "Carlos Rojas", "cupos": 0}]
+        return render_template('cursos.html', cursos=cursos)
     else:
         return redirect(url_for('login'))
 
