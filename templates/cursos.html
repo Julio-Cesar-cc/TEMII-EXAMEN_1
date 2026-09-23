@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block contenido %}
+    {% if usuario %}
+        <h2>Bienvenido nuevamente, {{ usuario }}.</h2>
+    {% else %}
+        <h2>Bienvenido al Portal Académico.</h2>
+    {% endif %}
     <h2>Lista de Cursos</h2>
 
     <ul>
@@ -19,4 +24,10 @@
         <br>
     {% endfor %}
     </ul>
+    {% if usuario %}
+        <a href="/eliminar_cookie">Eliminar Cookie de Preferencia</a>
+        <br><br>
+    {% endif %}
+    
+    <a href="/">Volver al Login</a>
 {% endblock %}
